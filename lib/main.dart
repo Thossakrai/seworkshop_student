@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seworkshop_demo/cartpage.dart';
+import 'package:seworkshop_demo/product_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter *= 19;
     });
   }
+
   void onTabTapped(int index) {
     print(index);
     setState(() {
@@ -67,16 +69,17 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("HOME")),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), title: Text("CART")),
-          BottomNavigationBarItem(icon : Icon(Icons.person), title: Text("PROFILE"))
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), title: Text("CART")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person), title: Text("PROFILE"))
         ],
       ),
-
     );
   }
 }
 
-class Home extends StatefulWidget{
+class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return HomeState();
@@ -87,6 +90,16 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Text("HOME");
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      children: <Widget>[
+        ProductCard(
+          title: "Corn",
+          qty: 10,
+          price: 5,
+        ),
+        ProductCard(title: "Apple", qty: 10, price: 5)
+      ],
+    );
   }
 }
